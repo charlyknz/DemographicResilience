@@ -80,7 +80,7 @@ random_m <- foreach(i = c(1:length(random)),
                                  error=function(e) NA)
                         tryCatch(GenT <- generation.time(matrix$matrix_A), 
                                  error=function(e) NA)
-                        tryCatch(Fec <- vitalRates(matrix$matrix_U,
+                        tryCatch(Fec <- vital_rates(matrix$matrix_U,
                                                    matrix$matrix_F)$fec,
                                  error=function(e) NA)
                         tryCatch(rupr <- reac(A = matrix$matrix_A,bound="upper"),
@@ -127,7 +127,7 @@ random_mp <- foreach(i = c(1:length(random)),
                                  error=function(e) NA)
                         tryCatch(GenT <- generation.time(matrix$matrix_A), 
                                  error=function(e) NA)
-                        tryCatch(Fec <- vitalRates(matrix$matrix_U,
+                        tryCatch(Fec <- vital_rates(matrix$matrix_U,
                                                    matrix$matrix_F)$fec,
                                  error=function(e) NA)
                         tryCatch(rupr <- reac(A = matrix$matrix_A,bound="upper"),
@@ -164,7 +164,7 @@ random_m <- random_m %>%
   filter(!is.infinite(GenT)) %>% 
   mutate(xt=log(xt+1),
          rupr=log(rupr+1),
-         rlwr=abs(log((1 - rlwr)+1)),
+         rlwr=abs(log(rlwr+1)),
          Fec=log(Fec+1),
          GenT=log(GenT+1))
 
@@ -172,7 +172,7 @@ random_mp <- random_mp %>%
   filter(!is.infinite(GenT)) %>% 
   mutate(xt=log(xt+1),
          rupr=log(rupr+1),
-         rlwr=abs(log((1 - rlwr)+1)),
+         rlwr=abs(log(rlwr+1)),
          Fec=log(Fec+1),
          GenT=log(GenT+1))
 
